@@ -1,0 +1,5 @@
+.terraform/
+ aws/
+ awscliv2.zip
+ terraform.tfstate
+  terraform.tfstate.backup
