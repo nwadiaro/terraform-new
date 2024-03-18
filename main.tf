@@ -1,7 +1,15 @@
+data "aws_key_pair" "terraform_key" {
+  key_name = "terraform_key"
+}
+
 resource "aws_instance" "web" {
-  ami           = "ami-080e1f13689e07408"
+  ami           = var.ami[count.index]
   instance_type = "t2.micro"
-  count         = 3
+  count         = length(var.ami)
+  key_name      = "terraform_key"
+  lifecycle {
+    create_before_destroy = true
+  }
 
   tags = {
     Name = "webserver"
